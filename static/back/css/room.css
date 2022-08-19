@@ -1,0 +1,26 @@
+.form {
+    text-align: center;
+    background-color:#FAFAFA ;
+    padding-top: 50px;
+}
+
+
+input[type=text]
+{
+    border: 1px solid #EB796F;
+    border-radius: 5px;
+    padding: 10px;
+    width: 90%;
+
+}
+.button {
+    border: 1px solid #EB796F;
+    background-color: #FAFAFA;
+    color: #EB796F;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+
+}
