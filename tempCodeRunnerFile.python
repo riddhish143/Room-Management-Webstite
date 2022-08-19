@@ -1,0 +1,108 @@
+class vertex:
+    def __init__(self,node):
+        self.id=node
+        self.adjacent={}
+        self.distance=float('inf')
+        self.visited=False
+        self.previous=None
+        self.color="white"
+        self.indegree=0
+        self.outdegree=0
+    def addneighbour(self,neighbour,weight=0):
+        self.adjacent[neighbour]=weight
+    def setcolor(self,k):
+        self.color=k
+    def getcolor(self):
+        return self.color
+    def getconnections(self):
+        return self.adjacent.keys()
+    def setvisit(self):
+        self.visited=True
+    def getvertex(self):
+        return self.id
+    def getweight(self,neighbour):
+        return self.adjacent[neighbour]
+    def setdist(self,distance):
+        self.distance=distance
+    def getdist(self):
+        return self.distance
+    def setpre(self,prev):
+        self.previous=prev
+        
+        
+    
+    def __str__(self):
+        return str(self.id) +'adjacent:' + str([x.id for x in self.adjacent])
+class graph:
+    def __init__(self):
+        self.verticesdict={}
+        self.numvertices=0
+    def __iter__(self): 
+        
+            g=iter(self.verticesdict.values())
+            return g  
+    def addvertex(self,node):
+        self.numvertices+=1
+        new=vertex(node)
+        self.verticesdict[node]=new
+        return new
+    def getvertex(self,n):
+        if n in self.verticesdict:
+            return self.verticesdict[n]
+        else:
+            return None
+    def addedge(self,frm,to,cost=0):
+        if frm not in self.verticesdict:
+            self.addvertex(frm)
+        if to  not in self.verticesdict:
+            self.addvertex(to)
+        self.verticesdict[frm].addneighbour(self.verticesdict[to],cost) 
+        self.verticesdict[frm].outdegree+=1
+        self.verticesdict[to].indegree+=1
+         
+    def getvertices(self):
+        return self.verticesdict.keys()
+    def setprevious(self,current):
+        self.previous=current
+    def getpre(self,current):
+        return self.previous
+    def printdegrees(self):
+        s=[]
+        for v in g:
+            s.append((v.indegree,v.outdegree,v.getvertex()))
+        return s    
+            
+    def getedges(self):
+        edges=[]
+        for v in g:
+            for w in v.getconnections():
+                vid=v.getvertex()
+                wid=w.getvertex()
+                edges.append((vid,wid,v.getweight(w)))
+        return edges
+    def printalldegress(self):
+       
+        for v in g:
+            print("vertex: ",v.getvertex(),"indegree: ",v.indegree,"outdegree:",v.outdegree)
+            
+
+g=graph()            
+print("how many vertices does your graph have?")
+for i in range(int(input())):
+    print("please input vertexid:")
+    g.addvertex(input())
+print("decide your  no of edges")  
+s=int(input())
+for j in range(int(input())):
+    print("input format should be: both vertex id and weight between them" )
+    g.addedge(input(),input(),int(input()))
+    
+g.printalldegress()
+
+    
+    
+    
+    
+
+            
+    
